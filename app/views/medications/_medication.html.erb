@@ -1,0 +1,10 @@
+<div class="col-md-3">
+    <div class="thumbnail">
+      <%= image_tag 'cover.jpg', class: 'img-responsive' %>
+    </div>
+
+    <div class="caption">
+      <p><strong><%= link_to medication.name, medication_path(medication) %></strong></p>
+      <p>$<%= medication.price/100 %></p>
+    </div>
+</div>

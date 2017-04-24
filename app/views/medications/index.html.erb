@@ -1,34 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Medications</h1>
+<div class="row">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Manufacturer</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Availability</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @medications.each do |medication| %>
-      <tr>
-        <td><%= medication.name %></td>
-        <td><%= medication.manufacturer %></td>
-        <td><%= medication.description %></td>
-        <td><%= medication.price %></td>
-        <td><%= medication.availability %></td>
-        <td><%= link_to 'Show', medication %></td>
-        <td><%= link_to 'Edit', edit_medication_path(medication) %></td>
-        <td><%= link_to 'Destroy', medication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render @medications %>
+  
+</div>
 
 <br>
 
