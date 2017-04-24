@@ -1,0 +1,36 @@
+<h1>Dashboard</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3>Medication
+    <%= link_to 'New Order', new_medication_path, class: 'btn btn-primary btn-sm' %>
+    <table class="table table-condensed"> 
+    </h3>
+      <thead> 
+        <tr> 
+          <th>ID</th> 
+            <th>Name</th> 
+            <th>Available</th> 
+            <th></th> 
+        </tr> 
+      </thead>
+        <tbody>
+        <% @medications.each do |medication| %> 
+          <tr> 
+          <td><%= medication.id %></td> 
+          <td><%= link_to medication.name, medication_path(medication) %></td> 
+          <td><%= medication.availability %></td> 
+          <td><%= link_to 'Edit', edit_medication_path(medication) %></td>
+          </tr> 
+        <% end %>
+        </tbody> 
+    </table>
+  </div>
+  <div class="col-md-4">
+    <h3>Sales</h3>
+  </div>
+
+  <div class="col-md-4">
+    <h3>Deliveries</h3>
+  </div>
+</div>
