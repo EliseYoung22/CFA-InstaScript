@@ -20,6 +20,7 @@ class MedicationsController < ApplicationController
 
   # GET /medications/1/edit
   def edit
+    authorize! :manage, @medication
   end
 
   # POST /medications
@@ -41,6 +42,7 @@ class MedicationsController < ApplicationController
   # PATCH/PUT /medications/1
   # PATCH/PUT /medications/1.json
   def update
+    authorize! :manage, @medication
     respond_to do |format|
       if @medication.update(medication_params)
         format.html { redirect_to @medication, notice: 'Medication was successfully updated.' }
@@ -55,6 +57,7 @@ class MedicationsController < ApplicationController
   # DELETE /medications/1
   # DELETE /medications/1.json
   def destroy
+    authorize! :manage, @medication
     @medication.destroy
     respond_to do |format|
       format.html { redirect_to medications_url, notice: 'Medication was successfully destroyed.' }
@@ -70,6 +73,6 @@ class MedicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medication_params
-      params.require(:medication).permit(:name, :manufacturer, :description, :price, :availability)
+      params.require(:medication).permit(:name, :manufacturer, :description, :price, :availability, :image, :resource)
     end
 end
