@@ -68,7 +68,7 @@ class MedicationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_medication
-      @medication = Medication.find(params[:id])
+      @medication = Medication.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
