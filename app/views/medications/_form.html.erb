@@ -1,15 +1,15 @@
-<%= simple_form_for(@medication) do |f| %>
+<%= simple_form_for(@medication, html: {class: 'form-signin'}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :manufacturer %>
-    <%= f.input :description %>
-    <%= f.input :price %>
+  
+    <%= f.input :name, required: true, label: false, placeholder: 'Name' %>
+    <%= f.input :manufacturer, required: true, label: false, placeholder: 'Manufacturer' %>
+    <%= f.input :description, required: true, label: false, placeholder: 'Description' %>
+    <%= f.input :price, required: true, label: false, placeholder: 'Price' %>
     <%= f.input :availability %>
-  </div>
+  
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+
+    <%= f.button :submit, class: 'btn btn-primary btn-block' %>
+
 <% end %>
