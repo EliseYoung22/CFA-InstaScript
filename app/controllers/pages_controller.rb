@@ -4,6 +4,7 @@ class PagesController < ApplicationController
     if current_user
       redirect_to medications_path
     end
+    @medications = Medication.last(4)
   end
 
   def dashboard
