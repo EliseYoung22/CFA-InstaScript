@@ -1,4 +1,5 @@
 class MedicationsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_medication, only: [:show, :edit, :update, :destroy]
 
   # GET /medications
@@ -24,7 +25,7 @@ class MedicationsController < ApplicationController
   # POST /medications
   # POST /medications.json
   def create
-    @medication = Medication.new(medication_params)
+    @medication = current_user.medications.new(medication_params)
 
     respond_to do |format|
       if @medication.save
