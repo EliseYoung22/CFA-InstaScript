@@ -6,7 +6,12 @@ class MedicationsController < ApplicationController
   # GET /medications.json
   def index
     @medications = Medication.all.where(availability:true)
-  end
+    @medications = Medication.where(nil)
+    filtering_params(params).each do |key, value|
+      @medications = @medications.public_send(key, value) if value.present?
+    end
+end
+  
 
   # GET /medications/1
   # GET /medications/1.json
@@ -74,5 +79,9 @@ class MedicationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def medication_params
       params.require(:medication).permit(:name, :manufacturer, :description, :price, :availability, :image, :resource)
+    end
+
+    def filtering_params(params)
+      params.slice(:medication, :description, :price)
     end
 end
