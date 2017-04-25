@@ -2,22 +2,16 @@ class TransactionsController < ApplicationController
 
   def create
     medication = Medication.find_by!(slug: params[:slug])
-    token = params[:stripeToken]
+    sale = medication.sales.create(amount: medication.price, 
+      buyer_email: current_user.email,
+      seller_email: medication.user.email,
+      stripe_token: params[:stripeToken])
+    sale.process!
 
-    begin  
-     charge = Stripe::Charge.create(
-      amount: medication.price,
-      currency: "usd",
-      card: token,
-      description: current_user.email
-      )
-
-      @sale = medication.sales.create!(buyer_email: current_user.email)
-        redirect_to pickup_url(uuid: @sale.uuid)
-
-      rescue Stripe::CardError => e
-    flash[:notice] = e.message
-    redirect_to medication_path(medication)
+    if sale.finished?
+        redirect_to pickup_url(uuid: sale.uuid)
+    else
+      redirect_to medication_path(medication), notice: e.message
     end
   end
 
