@@ -19,4 +19,8 @@ class Medication < ApplicationRecord
   validates_numericality_of :price,
   greater_than: 49, message: "Price must be at least 50 cents"
 
+  scope(:medication, -> (name) { where("name like ?", "#{name}%")})
+scope(:description, -> (description) { where("description like ?", "%#{description}%")})
+scope(:price, -> (price) { where price: price })
+
 end
