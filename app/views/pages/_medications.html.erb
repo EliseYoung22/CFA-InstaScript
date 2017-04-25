@@ -1,21 +1,20 @@
-<table class="table table-condensed"> 
-    </h3>
-      <thead> 
-        <tr> 
-          <th>ID</th> 
-            <th>Name</th> 
-            <th>Available</th> 
-            <th></th> 
-        </tr> 
-      </thead>
-        <tbody>
-        <% @medications.each do |medication| %> 
-          <tr> 
-          <td><%= medication.id %></td> 
-          <td><%= link_to medication.name, medication_path(medication) %></td> 
-          <td><%= medication.availability %></td> 
-          <td><%= link_to 'Edit', edit_medication_path(medication) %></td>
-          </tr> 
-        <% end %>
-        </tbody> 
-    </table>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>ID</th>
+        <th>Name</th>
+        <th>Available</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @medications.each do |medication| %>
+      <tr>
+      <td><%= medication.id %></td>
+      <td><%= link_to medication.name, medication_path(medication) %></td>
+      <td><%= medication.availability %></td>
+      <td><%= link_to 'Edit', edit_medication_path(medication) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
